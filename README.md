@@ -1,3 +1,3 @@
 # Pt4_Pokemon
 
-Pablo Mejías  Alejandro Le
+Pablo Mejías  Alejandro León
