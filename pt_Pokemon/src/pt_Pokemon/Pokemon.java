@@ -1,9 +1,10 @@
 package pt_Pokemon;
-import java.util.Random;
-public abstract class Pokemon {
+
+public abstract class Pokemon implements Comparable<Pokemon>{
 	private String nom;
 	private int energia;
 	private int vida;
+	private int vidaActual;
 	private int danyBase;
 	private int defensa;
 	private int precisio;
@@ -15,9 +16,9 @@ public abstract class Pokemon {
 		this.precisio = precisio;
 		this.energia = 100;
 		this.vida = vida;
+		this.vidaActual = vida;
 	}
 	
-	abstract void resetStats();
 
 	public String toString() {
 		return "Nom: " + nom + "\nEnergia: " + energia + "\nVida: " + vida + "\nDany Base: " + danyBase
@@ -63,7 +64,26 @@ public abstract class Pokemon {
 	public int getPrecisio() {
 		return precisio;
 	}
+	
+	public void setVidaActual(int vidaAct) {
+		this.vidaActual = vidaAct;
+	}
+	
+	public int getVidaActual() {
+		return vidaActual;
+	}
+	
+	public void resetStats() {
+		// TODO Auto-generated method stub
+		vidaActual = vida;
+		energia = 100;
+	}
+	
+	public int compareTo(Pokemon o) {
+		// TODO Auto-generated method stub
+		return this.getEnergia() - o.getEnergia();
+	}
 
-
+	
 	
 }
