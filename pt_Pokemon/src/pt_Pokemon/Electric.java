@@ -25,7 +25,7 @@ public class Electric extends Pokemon implements Atacable, Defensable{
 			return dmg;
 		}else {
 			this.setEnergia(0);
-			System.out.println("The pokemon have no energy");
+			//System.out.println("The pokemon have no energy");
 			return 0;
 		}
 	}
@@ -38,28 +38,30 @@ public class Electric extends Pokemon implements Atacable, Defensable{
         Random rand = new Random();
         int probAtac = rand.nextInt(100);
         String resultat = "";
-        if (probAtac > enemic.getPrecisio()) {
-            resultat =  enemic.getNom() + " ha fallat l'atac";
-        }else {
-            if (enemic instanceof Aigua) {
-                setVidaActual(atacEnemic - this.getDefensa()*2);
-                resultat = "L'atac es poc efectiu. La vida s'ha reduit en " +(atacEnemic - this.getDefensa()*2)+" punts"
-                        + "del Pokemon "+this.getNom();
-            }else if (enemic instanceof Electric) {
-                setVidaActual(3*atacEnemic - this.getDefensa()*2);
-                resultat = "Atac critic. La vida s'ha reduit en "+(3*atacEnemic - this.getDefensa()*2)+ " punts "
-                        + "del Pokemon "+this.getNom();
-            }else if (enemic instanceof Foc) {
-                setVidaActual(atacEnemic - this.getDefensa());
-                resultat = "La vida s'ha reduit en "+(atacEnemic - this.getDefensa())+" punts "
-                        + "del Pokemon "+this.getNom();
-            }
-        if (getVidaActual() <= 0) {
-            this.setVidaActual(0);
-            resultat = "El Pokemon "+this.getNom()+" s'ha debilitat";
-        }else if (enemic.getEnergia() == 0) {
+        if (enemic.getEnergia() == 0) {
             resultat = "El pokemon enemic no te energia";
-            }
+        }else {
+	        if (probAtac > enemic.getPrecisio()) {
+	            resultat =  enemic.getNom() + " ha fallat l'atac";
+	        }else {
+	            if (enemic instanceof Aigua) {
+	                setVidaActual(getVidaActual() - (atacEnemic - this.getDefensa()*2));
+	                resultat = "L'atac es poc efectiu. La vida s'ha reduit en " +(atacEnemic - this.getDefensa()*2)+" punts"
+	                        + "del Pokemon "+this.getNom();
+	            }else if (enemic instanceof Foc) {
+	                setVidaActual(getVidaActual() - (3*atacEnemic - this.getDefensa()*2));
+	                resultat = "Atac critic. La vida s'ha reduit en "+(3*atacEnemic - this.getDefensa()*2)+ " punts "
+	                        + "del Pokemon "+this.getNom();
+	            }else if (enemic instanceof Electric) {
+	                setVidaActual(getVidaActual() - (atacEnemic - this.getDefensa()));
+	                resultat = "La vida s'ha reduit en "+(atacEnemic - this.getDefensa())+" punts "
+	                        + "del Pokemon "+this.getNom();
+	            }
+		        if (getVidaActual() <= 0) {
+		            this.setVidaActual(0);
+		            resultat = resultat + "\nEl Pokemon "+this.getNom()+" s'ha debilitat";
+		        }
+	        }
         }
         return resultat;
     }

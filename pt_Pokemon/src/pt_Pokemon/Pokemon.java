@@ -1,6 +1,6 @@
 package pt_Pokemon;
 
-public abstract class Pokemon implements Comparable<Pokemon>{
+public abstract class Pokemon implements Comparable<Pokemon>, Atacable, Defensable{
 	private String nom;
 	private int energia;
 	private int vida;
